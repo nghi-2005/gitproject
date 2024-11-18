@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let browser = prompt('enter browsers name')
+    switch (browser){
+        case 'Edge':
+            text="You've got the Edge"
+            break;
+        case 'Chrome':
+        case 'Firefox':
+        case 'safari':
+        case 'opera':
+            text='Okay we support these browsers too'
+            break;
+        default:
+            text='We hope that this page looks ok!'
+    }
+    document.write(text)
+</script>
+</body>
+</html>

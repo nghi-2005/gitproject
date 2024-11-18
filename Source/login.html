@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  let userName= prompt('Nhập tên người dùng' , '');
+  if (userName== 'admin'){
+    let passWord= prompt('Nhập mật khẩu','');
+    if (passWord=='TheMaster') {
+      alert('Welcome');
+    } else if  (passWord== null) {
+      alert('Canceld');
+    }else
+      alert('wrong password')
+  } else if(userName==null){
+    alert('canceld');
+  }else {
+    alert("i don't know you")
+  }
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
