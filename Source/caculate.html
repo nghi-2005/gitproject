@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="view">
+<br>
+<br>
+<div class="thang">
+<table>
+  <tbody>
+  <tr>
+    <td>
+      <button type="button" name="so" value="1" onclick="inputValue(this.value)">1</button>
+    </td>
+    <td>
+      <button type="button" name="so" value="2" onclick="inputValue(this.value)">2</button>
+    </td>
+    <td>
+      <button type="button" name="so" value="3" onclick="inputValue(this.value)">3</button>
+    </td>
+    <td>
+      <button type="button" name="dau" value="+" onclick="inputValue(this.value)">+</button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <button type="button" name="so" value="4" onclick="inputValue(this.value)">4</button>
+    </td>
+    <td>
+      <button type="button" name="so" value="5" onclick="inputValue(this.value)">5</button>
+    </td>
+    <td>
+      <button type="button" name="so" value="6" onclick="inputValue(this.value)">6</button>
+    </td>
+    <td>
+      <button type="button" name="dau" value="-" onclick="inputValue(this.value)">-</button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <button type="button" name="so" value="8" onclick="inputValue(this.value)">7</button>
+    </td>
+    <td>
+      <button type="button" name="so" value="9" onclick="inputValue(this.value)">8</button>
+    </td>
+    <td>
+      <button type="button" name="so" value="0" onclick="inputValue(this.value)">9</button>
+    </td>
+    <td>
+      <button type="button" name="dau" value="*" onclick="inputValue(this.value)">*</button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <button type="button" name="so" onclick="xoa()">AC</button>
+    </td>
+    <td>
+      <button type="button" name="so" value="0" onclick="inputValue(this.value)">0</button>
+    </td>
+    <td>
+      <button name="result" onclick="result()">=</button>
+    </td>
+    <td>
+      <button type="button" name="dau" value="/" onclick="inputValue(this.value)">/</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>
+<script>
+  let soHang1=''
+  let toanTu=''
+  let soHang2=''
+  function view(){
+    const view=document.getElementById("view");
+    let result;
+switch (toanTu){
+  case '+':
+    result= parseFloat(soHang1) + parseFloat(soHang2);
+    break;
+  case '-':
+    result=parseFloat(soHang1) - parseFloat(soHang2);
+    break
+    case '*':
+    result=parseFloat(soHang1) * parseFloat(soHang2);
+  break
+    case '/':
+    if (parseFloat(soHang2)===0){
+      alert('Khong ton tai so chia het cho 0');
+      xoa();
+      return;
+    }
+    result=parseFloat(soHang1)/parseFloat(soHang2)
+        break;
+  default:
+    alert('Bieu thuc k hop le');
+    xoa();
+    return;
+}
+view.value=result
+    soHang1=result.toString();
+toanTu='';
+    soHang2='';
+  }
+</script>
+</body>
+</html>

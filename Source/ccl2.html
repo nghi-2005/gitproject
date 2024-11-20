@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script>
+        let operand1 = ""; // Số hạng thứ nhất
+        let operator = ""; // Toán tử
+        let operand2 = ""; // Số hạng thứ hai
+
+        function inputValue(value) {
+            const view = document.getElementById("view");
+
+            if (["+", "-", "*", "/"].includes(value)) {
+                // Nếu nhấn toán tử
+                if (operand1 !== "" && operator === "") {
+                    operator = value;
+                }
+            } else {
+                // Nếu nhấn số
+                if (operator === "") {
+                    operand1 += value; // Thêm vào số hạng 1
+                } else {
+                    operand2 += value; // Thêm vào số hạng 2
+                }
+            }
+
+            // Hiển thị giá trị trong ô input
+            view.value = operand1 + operator + operand2;
+        }
+
+        function result() {
+            const view = document.getElementById("view");
+            let result;
+
+            if (operator === "+") {
+                result = parseFloat(operand1) + parseFloat(operand2);
+            } else if (operator === "-") {
+                result = parseFloat(operand1) - parseFloat(operand2);
+            } else if (operator === "*") {
+                result = parseFloat(operand1) * parseFloat(operand2);
+            } else if (operator === "/") {
+                if (parseFloat(operand2) === 0) {
+                    alert("Không thể chia cho 0!");
+                    xoa();
+                    return;
+                }
+                result = parseFloat(operand1) / parseFloat(operand2);
+            } else {
+                alert("Biểu thức không hợp lệ!");
+                xoa();
+                return;
+            }
+
+            view.value = result;
+            // Reset lại các giá trị sau khi tính
+            operand1 = result.toString();
+            operator = "";
+            operand2 = "";
+        }
+
+        function xoa() {
+            // Xóa toàn bộ dữ liệu
+            document.getElementById("view").value = "";
+            operand1 = "";
+            operator = "";
+            operand2 = "";
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="view" readonly>
+<br><br>
+<div class="thang">
+    <table>
+        <tbody>
+        <tr>
+            <td><button type="button" value="1" onclick="inputValue(this.value)">1</button></td>
+            <td><button type="button" value="2" onclick="inputValue(this.value)">2</button></td>
+            <td><button type="button" value="3" onclick="inputValue(this.value)">3</button></td>
+            <td><button type="button" value="+" onclick="inputValue(this.value)">+</button></td>
+        </tr>
+        <tr>
+            <td><button type="button" value="4" onclick="inputValue(this.value)">4</button></td>
+            <td><button type="button" value="5" onclick="inputValue(this.value)">5</button></td>
+            <td><button type="button" value="6" onclick="inputValue(this.value)">6</button></td>
+            <td><button type="button" value="-" onclick="inputValue(this.value)">-</button></td>
+        </tr>
+        <tr>
+            <td><button type="button" value="7" onclick="inputValue(this.value)">7</button></td>
+            <td><button type="button" value="8" onclick="inputValue(this.value)">8</button></td>
+            <td><button type="button" value="9" onclick="inputValue(this.value)">9</button></td>
+            <td><button type="button" value="*" onclick="inputValue(this.value)">*</button></td>
+        </tr>
+        <tr>
+            <td><button type="button" onclick="xoa()">AC</button></td>
+            <td><button type="button" value="0" onclick="inputValue(this.value)">0</button></td>
+            <td><button type="button" onclick="result()">=</button></td>
+            <td><button type="button" value="/" onclick="inputValue(this.value)">/</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
