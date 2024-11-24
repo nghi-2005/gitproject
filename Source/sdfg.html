@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Division</title>
+</head>
+<body>
+<h2>Enter two numbers</h2>
+<div id="demo">
+    <input type="number" id="number1" placeholder="Enter number 1">
+    <input type="number" id="number2" placeholder="Enter number 2">
+    <button onclick="checkDivision()">Check</button>
+</div>
+<p id="result"></p>
+
+<script>
+    function checkDivision() {
+        // Lấy giá trị từ input
+        let number1 = document.getElementById('number1').value;
+        let number2 = document.getElementById('number2').value;
+
+        // Chuyển đổi giá trị từ chuỗi sang số
+        number1 = parseInt(number1);
+        number2 = parseInt(number2);
+
+        // Kiểm tra tính hợp lệ
+        if (isNaN(number1) || isNaN(number2) || number2 === 0) {
+            document.getElementById('result').innerText = 'Vui lòng nhập số hợp lệ và số chia không được là 0.';
+            return;
+        }
+
+        // Kiểm tra chia hết
+        if (number1 % number2 === 0) {
+            document.getElementById('result').innerText = 'a chia hết cho b';
+        } else {
+            document.getElementById('result').innerText = 'a không chia hết cho b';
+        }
+    }
+</script>
+</body>
+</html>

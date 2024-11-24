@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Enter two numbers</h2>
+<div id="demo">
+<input type="number" id="number1" >
+<input type="number" id="number2" >
+<button onclick="checkDivision()">Check</button>
+</div>
+<p id="result"></p>
+<script>
+    debugger
+    function checkDivision() {
+        let number1=parseInt(document.getElementById('number1').value)
+        let number2=parseInt(document.getElementById('number2').value)
+        number1=parseInt(number1)
+        number2=parseInt(number2)
+
+        if (number1 % number2 === 0) {
+            document.getElementById('result').innerHTML='So a chia het cho so b'
+        } else {
+            document.getElementById('result').innerHTML= 'So a khong chia het cho so b'
+        }
+    }
+</script>
+<hr>
+<h2>Enter age</h2>
+<input type="number" id="age">
+<button onclick="checkAge()">Check</button>
+<p id="legal"></p>
+<script>
+    function checkAge(){
+        let age=parseInt(document.getElementById('age').value)
+        age=parseInt(age)
+        if (age<18){
+            document.getElementById('legal').innerHTML="so tuoi khong hop le"
+        }else {
+            document.getElementById('legal').innerHTML='so tuoi hop le'
+        }
+    }
+</script>
+<hr>
+<h2>Kiem tra so co lon 0 hay nho hon 0</h2>
+<input type="text" id="compare">
+<button onclick="checkNumber()">Check</button>
+<p id="bigger"></p>
+<script>
+    function checkNumber() {
+        let aCat = parseInt(document.getElementById('compare').value)
+        if (aCat<0) {
+            document.getElementById('bigger').innerText = 'Day la so nho hon khong'
+        }else{
+            document.getElementById('bigger').innerText='Day la so lon hon khong'
+        }
+        }
+</script>
+<hr>
+<h2>The biggest number</h2>
+<input type="text" id="so1">
+<input type="text" id="so2">
+<input type="text" id="so3">
+<button onclick="checkBiggestNumber()">Check</button>
+<p id="ketQua"></p>
+<script>
+    function checkBiggestNumber(){
+        let firstNumber=parseInt(document.getElementById('so1').value)
+        let secondNumber=parseInt(document.getElementById('so2').value)
+        let thirdNumber=parseInt(document.getElementById('so3').value)
+        if (firstNumber>secondNumber && firstNumber>thirdNumber){
+            document.getElementById('ketQua').innerText = 'So thu 1 la so lon nhat'
+        }else if(secondNumber>firstNumber && secondNumber>thirdNumber) {
+            document.getElementById('ketQua').innerText = 'So thu 2 la so lon nhat'
+        }else {
+            document.getElementById('ketQua').innerText = 'So thu 3 la so lon nhat'
+        }
+    }
+</script>
+<hr>
+
+</body>
+</html>

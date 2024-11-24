@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #ques{
+            position: absolute;
+            left: 220px;
+            top: 175px;
+            width: auto;
+            height: 210px;
+        } #asn_yes{
+            position: absolute;
+            left: 285px;
+            top: 235px;
+            width: 210px;
+            height: 210px;
+        } #asn_no{
+            position: absolute;
+            left: 360px;
+            top: 235px;
+            width: 210px;
+            height: 210px;
+        }
+    </style>
+    <script type="text/javascript">
+        function Yes(){
+            alert('Tut quan m ra')
+        }
+        function No(){
+            var x = Math.round(Math.random()* window.innerWidth)
+            var y = Math.round(Math.random()* window.innerHeight)
+            document.getElementById('asn_no').style.top = y + 'px'
+            document.getElementById('asn_no').style.left = x + 'px'
+        }
+
+    </script>
+</head>
+<body>
+<form>
+    <h1 id="ques">Do you love me</h1>
+    <div id="asn_yes">
+        <input type="button" value="YES" onclick="Yes()">
+    </div>
+    <div id="asn_no">
+        <input type="button" value="NO" onmouseover="No()">
+    </div>
+</form>
+</body>
+</html>
