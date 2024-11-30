@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let meaning = prompt('nhap cmm di ')
+        let dictionary = [
+            ['apple','tao'],
+            ['banana','chuoi'],
+            ['book','sach'],
+        ]
+        for ( let i = 0; i < dictionary.length; i++){
+        for ( let j = 0; j< dictionary.length;){
+         if ( dictionary[i][j++] == meaning ){
+             document.write(dictionary[i][j++])
+         }
+        }
+    }
+</script>
+</body>
+</html>

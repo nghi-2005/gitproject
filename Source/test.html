@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sử dụng mảng</title>
+</head>
+<body>
+<h1>Nhập bất kỳ phím nào:</h1>
+<input id="inputBox" type="text" placeholder="Gõ phím..." />
+
+<script>
+  const fixedText = "Chào mừng bạn đến đây!"; // Chuỗi cố định
+  const charArray = fixedText.split(''); // Chuyển chuỗi thành mảng ký tự
+  let index = 0; // Chỉ số theo dõi ký tự
+
+  const inputBox = document.getElementById("inputBox");
+  inputBox.addEventListener("keydown", function(event) {
+    event.preventDefault(); // Chặn hành động mặc định
+
+    if (index < charArray.length) {
+      inputBox.value += charArray[index]; // Thêm ký tự vào ô nhập liệu
+      index++; // Tăng chỉ số
+    }if (index >= charArray.length) {
+      index = 0; // Reset lại từ đầu
+      inputBox.value = ""; // Xóa nội dung hiện tại
+    }
+  });
+</script>
+</body>
+</html>

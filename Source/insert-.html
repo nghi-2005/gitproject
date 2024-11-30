@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let num = window.prompt('Enter a string of numbers: ')
+    let str = num.toString()
+    let resuilt = [str[0]]
+    for ( let x = 1 ; x < str.length ; x++) {
+        if (str[x-1] % 2 === 0 && str[x] % 2 === 0 ){
+            resuilt.push('-', str[x])
+        }else
+            resuilt.push(str[x])
+    }
+document.write(resuilt.join(''))
+
+</script>
+</body>
+</html>

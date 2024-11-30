@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text"  id="inputBox" />
+<script>
+    const fixedText = 'Tôi có 1 con cu bự';
+    const charArray = fixedText.split('');
+    let index = 0;
+
+    const inputBox = document.getElementById("inputBox");
+    inputBox.addEventListener("keydown", function(event) {
+        event.preventDefault(); // Chặn hành động mặc định
+
+        if (index < charArray.length) {
+            inputBox.value += charArray[index]; // Thêm ký tự vào ô nhập liệu
+            index++; // Tăng chỉ số
+        }if (index >= charArray.length) {
+            index = 0; // Reset lại từ đầu
+            inputBox.value = ""; // Xóa nội dung hiện tại
+        }
+    });
+</script>
+</body>
+</html>
