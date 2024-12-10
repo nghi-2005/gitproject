@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+class Apple {
+    constructor(weight) {
+        this.weight = weight
+    }
+    getWeight() {
+        return this.weight;
+    }
+    setWeight(weight) {
+        this.weight = weight
+    }
+    isEmpty() {
+        return this.weight <= 0
+    }
+    decreaseApple() {
+        if (this.isEmpty()) {
+            console.log('Tao da het')
+        }else {
+            this.weight--
+        }
+    }
+}
+class Human {
+    constructor(name, gender, weight) {
+        this.name = name
+        this.gender = gender
+        this.weight = weight
+    }
+    getName() {
+        return this.name
+    }
+    setName(name) {
+        this.name = name
+    }
+    getWeight() {
+        return this.weight
+    }
+    isMale() {
+        return this.gender === 1
+    }
+    getGender() {
+        return this.isMale() ? "Male" : "Female"
+    }
+    setWeight() {
+        this.weight = weight
+    }
+    say(message) {
+        console.log(`${this.name}: ${message}`)
+    }
+    checkApple(apple) {
+        return apple.isEmpty()
+    }
+    eat(apple) {
+        if (!this.checkApple(apple)) {
+            apple.decreaseApple()
+            this.weight++
+            console.log(`${this.name} da an mot mieng tao.`)
+        }else {
+            console.log('Khong con tao de an')
+        }
+    }
+    getInfor() {
+        console.log(`Tên: ${this.name}, Cân nặng: ${this.weight}, Giới tính: ${this.getGender()}`);
+    }
+}
+let adam = new Human('Adam', 1, 65)
+let eva = new Human("Eva", 2, 55);
+let apple = new Apple(10);
+
+while (!apple.isEmpty()) {
+    adam.say("Tôi sẽ ăn một miếng táo!");
+    adam.eat(apple);
+    console.log(`Cân nặng của ${adam.getName()}: ${adam.getWeight()} kg`);
+    console.log(`Táo còn lại: ${apple.getWeight()} đơn vị\n`);
+
+    eva.say("Tôi cũng muốn ăn một miếng táo!");
+    eva.eat(apple);
+    console.log(`Cân nặng của ${eva.getName()}: ${eva.getWeight()} kg`);
+    console.log(`Táo còn lại: ${apple.getWeight()} đơn vị\n`);
+}
+console.log("Táo đã hết. Đây là thông tin cuối cùng:");
+adam.getInfo();
+eva.getInfo();
+</script>
+</body>
+</html>

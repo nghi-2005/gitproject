@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* tag selector */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+<div id='total'></div>
+<div id='result'></div>
+<script>
+    let products = [];
+
+    class SanPham {
+        constructor(code, name, price, number) {
+            this.code = code
+            this.name = name
+            this.price = price
+            this.number = number
+        }
+    }
+
+    products.push(new SanPham('SPX001', 'Đồ chơi người lớn', '600.000VNđ/1sp', '50'));
+    products.push(new SanPham('SPX002', 'Đồ chơi trẻ em', '300.000VNđ/1sp', '50'));
+    products.push(new SanPham('SPX003', 'Dầu trẻ em-baby oil', '200.000VNđ/1sp', '50'));
+
+    function showProductsList(item) {
+        return `<tr>
+        <td>${item.code}</td>
+        <td>${item.name}</td>
+        <td>${item.price}</td>
+        <td>${item.number}</td>
+    </tr>`
+    }
+
+    const result = document.getElementById('result');
+    let table = '<table><tr><th>Mã sản phẩm</th><th>Tên sản phẩm</th><th>Giá</th><th>Số lượng</th></tr>' ;
+    for (let i = 0; i < products.length; i++){
+        table += `<tr>
+    <td>${products[i].code}</td>
+    <td>${products[i].name}</td>
+    <td>${products[i].price}</td>
+    <td>${products[i].number}</td>
+    </tr>`
+    }
+    table += '</table>';
+    result.innerHTML = table;
+    console.log(students);
+</script>
+</body>
+</html>
+
+<!--Tối thiểu thêm 3 phần tử vào mảng products:-->
+<!--Ví dụ: {code: 'SP001', name: 'Mac Mini M4', 13500000, 99}-->
+<!-- - Mã sản phẩm (SPXXX)-->
+<!-- - Tên sản phẩm-->
+<!-- - Giá sản phẩm-->
+<!-- - Số lượng sản phẩm-->
