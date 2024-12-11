@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra so nguyên tố</title>
+</head>
+<body>
+<script>
+  let number = parseInt(prompt('nhap vao 1 so '))
+  function isPrime(num){
+    if (num<=1) return false;
+    for (let i = 2; i < Math.sqrt(num); i++ ){
+      if ( num % i == 0) return false
+    }
+    return true;
+  }
+  if (isPrime(number)){
+    alert(number + ' là số nguyên tố.');
+  } else {
+    alert(number + ' không phải là số nguyên tố.');
+  }
+</script>
+</body>
+</html>
