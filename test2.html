@@ -5,39 +5,44 @@
     <title>Title</title>
 </head>
 <body>
+<!--<table>-->
+<!--    <tr>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--        <td></td>-->
+<!--    </tr>-->
+<!--</table>-->
+<div id="resultDiv"></div>
 <script>
-<!--    // let cars = new Array('bmw','audi','toyota')-->
-<!--    // let fruits = ['banana','apple','orange']-->
-<!--    // fruits.unshift('meomeo')-->
-<!--    // for (let i = 0; i < fruits.length; i++){-->
-<!--    //     console.log(fruits[i])-->
-<!--    // }-->
-<!--    // function addFruit(name){-->
-<!--    //     fruits.push(name)-->
-<!--    // }-->
-<!--    // addFruit('sdfsf')-->
-<!--    // console.log(fruits)-->
-<!--    //-->
-<!--    function sum(a,b){-->
-<!--        console.log(a + b);-->
-<!--    }-->
-<!--    function isPrime(number) {-->
-<!--        // TODO: kiem tra mot so co phai la so nguyen to hay khong-->
-<!--        return true;-->
-<!--    }-->
-<!--    if (isPrime(10)) {-->
-<!--        // day la so nguyen to-->
-<!--    } else {-->
-<!--        // day ko phai la so nguyen to-->
-<!--    }-->
-<!--    // sum(5, 10)-->
-<!--    // console.log(sum(5, 10));-->
-<!--    // let total = sum(5,10)-->
-<!--    // console.log(total)-->
-var x = [1,3,5];
-x[0] = x[2];
-x[1] = x[0];
-console.log(x);
+
+    class DienThoai {
+        constructor(masp, ten, gia, soLuong) {
+            this.masp = masp
+            this.ten = ten
+            this.gia = gia
+            this.soLuong = soLuong
+        }
+    }
+    const apple = new DienThoai('ssp01','sdf','sdf','gfg')
+    const xiaomi = new DienThoai('ssp01','sdf','sdf','gfg')
+    const phones = [];
+    phones.push(apple)
+    phones.push(xiaomi)
+    const resultDiv = document.getElementById('resultDiv')
+    let items = "<table border = '1' ><tr><th>Ma san pham</th><th>Ten san pham</th><th>Gia</th><th>So luong</th></tr>"
+    for (let i = 0; i < phones.length; i++) {
+        items += `<tr>
+        <td>  ${phones[i].masp} </td>
+        <td>  ${phones[i].ten} </td>
+        <td>  ${phones[i].gia} </td>
+        <td>  ${phones[i].soLuong} </td>
+    </tr>`
+        // items += "<tr><td>" + products[i] + "</td></tr>"
+    }
+    items += "</table>";
+
+    resultDiv.innerHTML = items
 
 </script>
 </body>
