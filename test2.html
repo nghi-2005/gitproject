@@ -5,44 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-<!--<table>-->
-<!--    <tr>-->
-<!--        <td></td>-->
-<!--        <td></td>-->
-<!--        <td></td>-->
-<!--        <td></td>-->
-<!--    </tr>-->
-<!--</table>-->
-<div id="resultDiv"></div>
 <script>
+    function staircase(n) {
+        for (let i = 1; i <= n; i++) {
+            // Tạo khoảng trắng và dấu #
+            let spaces = ' '.repeat(n - i);
+            let hashes = '#'.repeat(i);
 
-    class DienThoai {
-        constructor(masp, ten, gia, soLuong) {
-            this.masp = masp
-            this.ten = ten
-            this.gia = gia
-            this.soLuong = soLuong
+            // In kết quả ra màn hình
+            console.log(spaces + hashes);
         }
     }
-    const apple = new DienThoai('ssp01','sdf','sdf','gfg')
-    const xiaomi = new DienThoai('ssp01','sdf','sdf','gfg')
-    const phones = [];
-    phones.push(apple)
-    phones.push(xiaomi)
-    const resultDiv = document.getElementById('resultDiv')
-    let items = "<table border = '1' ><tr><th>Ma san pham</th><th>Ten san pham</th><th>Gia</th><th>So luong</th></tr>"
-    for (let i = 0; i < phones.length; i++) {
-        items += `<tr>
-        <td>  ${phones[i].masp} </td>
-        <td>  ${phones[i].ten} </td>
-        <td>  ${phones[i].gia} </td>
-        <td>  ${phones[i].soLuong} </td>
-    </tr>`
-        // items += "<tr><td>" + products[i] + "</td></tr>"
-    }
-    items += "</table>";
-
-    resultDiv.innerHTML = items
+    let abc = staircase(6)
 
 </script>
 </body>
