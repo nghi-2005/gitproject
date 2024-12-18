@@ -2,22 +2,179 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #game-container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        canvas {
+            border: 2px solid #333;
+            margin: 20px 0;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+        .info {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .qr-container {
+            margin-top: 20px;
+        }
+        .qr-container img {
+            max-width: 150px;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+        input[type="number"] {
+            width: 50px;
+            text-align: center;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-<script>
-    function staircase(n) {
-        for (let i = 1; i <= n; i++) {
-            // Tạo khoảng trắng và dấu #
-            let spaces = ' '.repeat(n - i);
-            let hashes = '#'.repeat(i);
+<div id="game-container">
+    <h1>Lottery Game</h1>
+    <canvas id="lotteryCanvas" width="400" height="100"></canvas>
 
-            // In kết quả ra màn hình
-            console.log(spaces + hashes);
+    <div class="info">
+        Balance: $<span id="balance">100</span><br>
+        Bet Amount: $<input type="number" id="betAmount" value="10" min="1">
+    </div>
+
+    <div class="info">
+        Choose Your Numbers:
+        <input type="number" id="num1" min="0" max="9" placeholder="0-9">
+        <input type="number" id="num2" min="0" max="9" placeholder="0-9">
+        <input type="number" id="num3" min="0" max="9" placeholder="0-9">
+    </div>
+
+    <button class="btn" id="spinButton">Spin</button>
+    <p class="info" id="resultMessage"></p>
+
+    <div class="qr-container">
+        <h3>Recharge Your Balance</h3>
+        <img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462571500_1200387447728053_3279591698410612293_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeE3H7lOZweCG8BGLRYrJbaPTstaqIJMjLdOy1qogkyMt8D0h4L_MypYimp_qT2k8eq8rA9KyCtW6__Rnl-gZGlS&_nc_ohc=Cl7a1sAxt1UQ7kNvgG4pLVV&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGcNWmsm3_5KrU4liaSYKCC0fkKSawCvtnTd4MOyJu7Aw&oe=6789052A" alt="QR Code to Recharge">
+        <p>Scan the QR code to add funds to your balance.</p>
+        <input type="number" id="rechargeAmount" placeholder="Amount to recharge" style="width: 120px; margin: 10px;">
+        <button class="btn" id="rechargeButton">Recharge</button>
+    </div>
+</div>
+
+<script>
+    class LotteryGame {
+        constructor(canvasId) {
+            this.canvas = document.getElementById(canvasId);
+            this.ctx = this.canvas.getContext('2d');
+            this.numbers = [0, 0, 0];
+            this.balance = 100;
+        }
+
+        drawNumbers() {
+            const { ctx, numbers } = this;
+            ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            ctx.font = '40px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#333';
+            numbers.forEach((num, i) => {
+                ctx.fillText(num, 100 * i + 70, 70);
+            });
+        }
+
+        spin() {
+            this.numbers = [
+                Math.floor(Math.random() * 10),
+                Math.floor(Math.random() * 10),
+                Math.floor(Math.random() * 10)
+            ];
+            this.drawNumbers();
+            return this.numbers;
+        }
+
+        updateBalance(amount) {
+            this.balance += amount;
+            document.getElementById('balance').innerText = this.balance;
+        }
+
+        checkWin(playerNumbers) {
+            const [a, b, c] = this.numbers;
+            if (playerNumbers[0] === a && playerNumbers[1] === b && playerNumbers[2] === c) return 'jackpot';
+            return 'lose';
         }
     }
-    let abc = staircase(6)
 
+    const game = new LotteryGame('lotteryCanvas');
+    game.drawNumbers();
+
+    document.getElementById('spinButton').addEventListener('click', () => {
+        const betAmount = parseInt(document.getElementById('betAmount').value, 10);
+        const num1 = parseInt(document.getElementById('num1').value, 10);
+        const num2 = parseInt(document.getElementById('num2').value, 10);
+        const num3 = parseInt(document.getElementById('num3').value, 10);
+        const resultMessage = document.getElementById('resultMessage');
+
+        if (isNaN(betAmount) || betAmount <= 0) {
+            resultMessage.textContent = 'Please enter a valid bet amount!';
+            return;
+        }
+        if (betAmount > game.balance) {
+            resultMessage.textContent = 'Not enough balance!';
+            return;
+        }
+        if (isNaN(num1) || isNaN(num2) || isNaN(num3) || num1 < 0 || num2 < 0 || num3 < 0 || num1 > 9 || num2 > 9 || num3 > 9) {
+            resultMessage.textContent = 'Please enter three valid numbers between 0 and 9!';
+            return;
+        }
+
+        game.updateBalance(-betAmount);
+        const result = game.spin();
+        const playerNumbers = [num1, num2, num3];
+
+        if (game.checkWin(playerNumbers) === 'jackpot') {
+            resultMessage.textContent = `Jackpot! Your numbers matched. You win $${betAmount * 500}!`;
+            game.updateBalance(betAmount * 500);
+        } else {
+            resultMessage.textContent = `You lose! The numbers were ${result.join(', ')}. Try again!`;
+        }
+    });
+
+    document.getElementById('rechargeButton').addEventListener('click', () => {
+        const rechargeAmount = parseInt(document.getElementById('rechargeAmount').value, 10);
+        const resultMessage = document.getElementById('resultMessage');
+
+        if (isNaN(rechargeAmount) || rechargeAmount <= 0) {
+            resultMessage.textContent = 'Please enter a valid recharge amount!';
+            return;
+        }
+
+        game.updateBalance(rechargeAmount);
+        resultMessage.textContent = `Successfully recharged $${rechargeAmount}!`;
+    });
 </script>
 </body>
 </html>
